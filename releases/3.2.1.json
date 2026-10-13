@@ -1,0 +1,565 @@
+{
+  "version": "3.2.1",
+  "upstream_tag": "v3.2.1",
+  "upstream_commit": "a6e10c66942d57c0e2d9b131bc9c61f898ab96ac",
+  "sha256": "5f0c993ceb01b0d51829fd0119255c77a211917fb0e3bd85f46514826c9fea6b",
+  "dependencies": [
+    {
+      "name": "nuc-common",
+      "requested_version": "1.0.5",
+      "values_path": "nuc-common",
+      "condition": "",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-common.git",
+      "commit": "b80e8b7fc002886c777d520413a2e453a312c48e",
+      "tag": "v1.0.5",
+      "version": "1.0.5"
+    },
+    {
+      "name": "nuc-traefik",
+      "requested_version": "1.0.5",
+      "values_path": "nuc-traefik",
+      "condition": "nuc-traefik.enabled",
+      "gates": [],
+      "source": "replacement",
+      "repo": "https://github.com/nixys/nuc-traefik.git",
+      "commit": "639da922df97a0906edfbc9caa323f1aa8570dfe",
+      "path": ".",
+      "version": "1.0.0",
+      "resources": {
+        "ingressRoutes": "IngressRoute",
+        "ingressRouteTCPs": "IngressRouteTCP",
+        "ingressRouteUDPs": "IngressRouteUDP",
+        "middlewares": "Middleware",
+        "middlewareTCPs": "MiddlewareTCP",
+        "serversTransports": "ServersTransport",
+        "serversTransportTCPs": "ServersTransportTCP",
+        "tlsOptions": "TLSOption",
+        "tlsStores": "TLSStore",
+        "traefikServices": "TraefikService"
+      }
+    },
+    {
+      "name": "nuc-certificates",
+      "requested_version": "1.0.4",
+      "values_path": "nuc-certificates",
+      "condition": "nuc-certificates.enabled",
+      "gates": [],
+      "source": "replacement",
+      "repo": "https://github.com/nixys/nuc-certificates.git",
+      "commit": "f63e06d1a519a1494d98173ec9beb1e883ef864d",
+      "path": ".",
+      "version": "1.0.0",
+      "resources": {
+        "certificates": "Certificate",
+        "certificateRequests": "CertificateRequest",
+        "challenges": "Challenge",
+        "clusterIssuers": "ClusterIssuer",
+        "issuers": "Issuer",
+        "orders": "Order"
+      }
+    },
+    {
+      "name": "nuc-istio",
+      "requested_version": "1.0.5",
+      "values_path": "nuc-istio",
+      "condition": "nuc-istio.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-istio.git",
+      "commit": "2c2704b9ae9e68f5c527a536f07c4c39814d598f",
+      "tag": "v1.0.5",
+      "version": "1.0.5"
+    },
+    {
+      "name": "nuc-fluxcd",
+      "requested_version": "1.0.4",
+      "values_path": "nuc-fluxcd",
+      "condition": "nuc-fluxcd.enabled",
+      "gates": [],
+      "source": "replacement",
+      "repo": "https://github.com/nixys/nuc-fluxcd.git",
+      "commit": "6878146acbc2db61c7ea26d81b43669ff8b2b5ea",
+      "path": ".",
+      "version": "1.0.0",
+      "resources": {
+        "alerts": "Alert",
+        "artifactGenerators": "ArtifactGenerator",
+        "buckets": "Bucket",
+        "externalArtifacts": "ExternalArtifact",
+        "gitRepositories": "GitRepository",
+        "helmCharts": "HelmChart",
+        "helmReleases": "HelmRelease",
+        "helmRepositories": "HelmRepository",
+        "imagePolicies": "ImagePolicy",
+        "imageRepositories": "ImageRepository",
+        "imageUpdateAutomations": "ImageUpdateAutomation",
+        "kustomizations": "Kustomization",
+        "ociRepositories": "OCIRepository",
+        "providers": "Provider",
+        "receivers": "Receiver"
+      }
+    },
+    {
+      "name": "nuc-argocd",
+      "requested_version": "1.0.4",
+      "values_path": "nuc-argocd",
+      "condition": "nuc-argocd.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-argocd.git",
+      "commit": "3df6e4ebb353dbcbd99252517336234f2be0d1bb",
+      "tag": "v1.0.4",
+      "version": "1.0.4"
+    },
+    {
+      "name": "nuc-knative",
+      "requested_version": "1.0.5",
+      "values_path": "nuc-knative",
+      "condition": "nuc-knative.enabled",
+      "gates": [],
+      "source": "replacement",
+      "repo": "https://github.com/nixys/nuc-knative.git",
+      "commit": "7af5af4360695b30c24a4f8905dca13785e98bd3",
+      "path": ".",
+      "version": "1.0.0",
+      "resources": {
+        "certificates": "Certificate",
+        "clusterDomainClaims": "ClusterDomainClaim",
+        "configurations": "Configuration",
+        "domainMappings": "DomainMapping",
+        "images": "Image",
+        "ingresses": "Ingress",
+        "metrics": "Metric",
+        "podAutoscalers": "PodAutoscaler",
+        "revisions": "Revision",
+        "routes": "Route",
+        "serverlessServices": "ServerlessService",
+        "services": "Service"
+      }
+    },
+    {
+      "name": "nuc-kserve",
+      "requested_version": "1.0.4",
+      "values_path": "nuc-kserve",
+      "condition": "nuc-kserve.enabled",
+      "gates": [],
+      "source": "replacement",
+      "repo": "https://github.com/nixys/nuc-kserve.git",
+      "commit": "91d7eb0acd7d44281d7ca6e861af66d24ca52cdc",
+      "path": ".",
+      "version": "1.0.0",
+      "resources": {
+        "clusterServingRuntimes": "ClusterServingRuntime",
+        "clusterStorageContainers": "ClusterStorageContainer",
+        "inferenceGraphs": "InferenceGraph",
+        "inferenceServices": "InferenceService",
+        "localModelCaches": "LocalModelCache",
+        "localModelNodeGroups": "LocalModelNodeGroup",
+        "localModelNodes": "LocalModelNode",
+        "servingRuntimes": "ServingRuntime",
+        "trainedModels": "TrainedModel"
+      }
+    },
+    {
+      "name": "nuc-kube-prometheus-stack",
+      "requested_version": "1.0.5",
+      "values_path": "nuc-kube-prometheus-stack",
+      "condition": "nuc-kube-prometheus-stack.enabled",
+      "gates": [],
+      "source": "replacement",
+      "repo": "https://github.com/nixys/nuc-kube-prometheus-stack.git",
+      "commit": "cef7f233ce99da9b2d40671e35ae64ddbf97a561",
+      "path": ".",
+      "version": "1.0.0",
+      "resources": {
+        "serviceMonitors": "ServiceMonitor",
+        "scrapeConfigs": "ScrapeConfig",
+        "prometheusRules": "PrometheusRule",
+        "probes": "Probe",
+        "podMonitors": "PodMonitor"
+      }
+    },
+    {
+      "name": "nuc-native-gateway",
+      "requested_version": "1.0.6",
+      "values_path": "nuc-native-gateway",
+      "condition": "nuc-native-gateway.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-native-gateway.git",
+      "commit": "805a0a22fe4e534b401eec154232e77883d80502",
+      "tag": "v1.0.6",
+      "version": "1.0.6"
+    },
+    {
+      "name": "nuc-victoria-metrics",
+      "requested_version": "1.0.4",
+      "values_path": "nuc-victoria-metrics",
+      "condition": "nuc-victoria-metrics.enabled",
+      "gates": [],
+      "source": "replacement",
+      "repo": "https://github.com/nixys/nuc-victoria-metrics.git",
+      "commit": "82502f6190d82f55e8b700adcc7bc3b7eeabf9ce",
+      "path": ".",
+      "version": "1.0.0",
+      "resources": {
+        "vmAlerts": "VMAlert",
+        "vmProbes": "VMProbe",
+        "vmRules": "VMRule",
+        "vmScrapeConfigs": "VMScrapeConfig",
+        "vmServiceScrapes": "VMServiceScrape",
+        "vmStaticScrapes": "VMStaticScrape"
+      }
+    },
+    {
+      "name": "nuc-vault-secret-operator",
+      "requested_version": "1.0.5",
+      "values_path": "nuc-vault-secret-operator",
+      "condition": "nuc-vault-secret-operator.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-vault-secret-operator.git",
+      "commit": "eb7b9f581426ee651f44d8af20725fd4ef1c8be8",
+      "tag": "v1.0.5",
+      "version": "1.0.5"
+    },
+    {
+      "name": "nuc-keda",
+      "requested_version": "1.0.4",
+      "values_path": "nuc-keda",
+      "condition": "nuc-keda.enabled",
+      "gates": [],
+      "source": "replacement",
+      "repo": "https://github.com/nixys/nuc-keda.git",
+      "commit": "626f1ddd8a97502e762f13164a86961a18b87da5",
+      "path": ".",
+      "version": "1.0.0",
+      "resources": {
+        "scaledObjects": "ScaledObject",
+        "scaledJobs": "ScaledJob",
+        "triggerAuthentications": "TriggerAuthentication",
+        "clusterTriggerAuthentications": "ClusterTriggerAuthentication"
+      }
+    },
+    {
+      "name": "nuc-cloudnativepg",
+      "requested_version": "1.0.0",
+      "values_path": "nuc-cloudnativepg",
+      "condition": "nuc-cloudnativepg.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-cloudnativepg.git",
+      "commit": "ec0930eea8917597279a928298e30824357c4ee2",
+      "tag": "v1.0.0",
+      "version": "1.0.0"
+    },
+    {
+      "name": "nuc-mysql-percona-operator",
+      "requested_version": "1.0.0",
+      "values_path": "nuc-mysql-percona-operator",
+      "condition": "nuc-mysql-percona-operator.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-mysql-percona-operator.git",
+      "commit": "623e25d6fbe1302c15081e394dca1252dbc610dd",
+      "tag": "v1.0.0",
+      "version": "1.0.0"
+    },
+    {
+      "name": "nuc-rabbitmq",
+      "requested_version": "1.0.1",
+      "values_path": "nuc-rabbitmq",
+      "condition": "nuc-rabbitmq.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-rabbitmq.git",
+      "commit": "e492bf4390034d4fee8927529f4d927e8fbb8f9c",
+      "tag": "v1.0.1",
+      "version": "1.0.1"
+    },
+    {
+      "name": "nuc-clickhouse",
+      "requested_version": "1.0.1",
+      "values_path": "nuc-clickhouse",
+      "condition": "nuc-clickhouse.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-clickhouse.git",
+      "commit": "01963860792f5a503fe41807c3b238d6f8231823",
+      "tag": "v1.0.1",
+      "version": "1.0.1"
+    },
+    {
+      "name": "nuc-elk",
+      "requested_version": "1.0.0",
+      "values_path": "nuc-elk",
+      "condition": "nuc-elk.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-elk.git",
+      "commit": "9da7f58e6f1de3bd3240021dc31a4323c25a080b",
+      "tag": "v1.0.0",
+      "version": "1.0.0"
+    },
+    {
+      "name": "nuc-external-secrets",
+      "requested_version": "1.1.0",
+      "values_path": "nuc-external-secrets",
+      "condition": "nuc-external-secrets.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-external-secrets.git",
+      "commit": "23d5c783b113ad16db8d99ba6df668a5d6745134",
+      "tag": "v1.1.0",
+      "version": "1.1.0"
+    },
+    {
+      "name": "nuc-mongodb-percona-operator",
+      "requested_version": "1.0.0",
+      "values_path": "nuc-mongodb-percona-operator",
+      "condition": "nuc-mongodb-percona-operator.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-mongodb-percona-operator.git",
+      "commit": "63f3f484183a46301de5a8ab042bede83df3185c",
+      "tag": "v1.0.0",
+      "version": "1.0.0"
+    },
+    {
+      "name": "nuc-envoy-gateway",
+      "requested_version": "1.0.1",
+      "values_path": "nuc-envoy-gateway",
+      "condition": "global.nuc-envoy-gateway.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-envoy-gateway.git",
+      "commit": "3fd706f24630b3e7d74a2cdaa60429eb0c03df63",
+      "tag": "v1.0.1",
+      "version": "1.0.1"
+    },
+    {
+      "name": "nuc-valkey",
+      "requested_version": "1.0.0",
+      "values_path": "nuc-valkey",
+      "condition": "nuc-valkey.enabled",
+      "gates": [],
+      "source": "tag",
+      "repo": "https://github.com/nixys/nuc-valkey.git",
+      "commit": "a783b64e546c2d9e0d8757ad5ab7166c47a3889a",
+      "tag": "v1.0.0",
+      "version": "1.0.0"
+    },
+    {
+      "name": "nuc-keycloak-operator",
+      "requested_version": "1.0.1",
+      "values_path": "nuc-keycloak-operator",
+      "condition": "nuc-keycloak-operator.enabled",
+      "gates": [],
+      "source": "omitted",
+      "reason": "No public repository, pinned override, or vendored archive"
+    },
+    {
+      "name": "nuc-strimzi-kafka-operator",
+      "requested_version": "1.0.0",
+      "values_path": "nuc-strimzi-kafka-operator",
+      "condition": "nuc-strimzi-kafka-operator.enabled",
+      "gates": [],
+      "source": "omitted",
+      "reason": "No public repository, pinned override, or vendored archive"
+    }
+  ],
+  "samples": [
+    {
+      "path": "samples/ai-inference-gateway-api/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 4
+    },
+    {
+      "path": "samples/ai-inference-mesh/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 5
+    },
+    {
+      "path": "samples/basic-stateless-app/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/batch-processing/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/cert-manager-issuance/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 2
+    },
+    {
+      "path": "samples/clickhouse-analytics/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/cloudnativepg-postgres/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/eck-elk-stack/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/envoy-gateway-policies/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/external-secrets-sync/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/fluxcd-gitops-delivery/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 4
+    },
+    {
+      "path": "samples/gateway-api-routing/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/istio-egress/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/istio-traffic-routing/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/istio-zero-trust/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/keda-event-autoscaling/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 2
+    },
+    {
+      "path": "samples/knative-serverless-service/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 1
+    },
+    {
+      "path": "samples/kserve-custom-runtime/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 2
+    },
+    {
+      "path": "samples/kserve-inference-graph/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 3
+    },
+    {
+      "path": "samples/kserve-inference-service/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 1
+    },
+    {
+      "path": "samples/kserve-localmodel-cache/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 4
+    },
+    {
+      "path": "samples/ml-platform/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 5
+    },
+    {
+      "path": "samples/percona-mongodb-replica-set/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/percona-mysql-ha/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/platform-baseline-app/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 5
+    },
+    {
+      "path": "samples/prometheus-observability/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 4
+    },
+    {
+      "path": "samples/rabbitmq-event-driven-workers/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 1
+    },
+    {
+      "path": "samples/rabbitmq-messaging/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/secure-internal-platform/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 2
+    },
+    {
+      "path": "samples/stateful-service/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/traefik-edge-routing/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 2
+    },
+    {
+      "path": "samples/valkey-cache/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/vault-dynamic-secrets/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/vault-static-secrets/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "samples/victoria-metrics-observability/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 4
+    },
+    {
+      "path": "samples/wordpress/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 2
+    },
+    {
+      "path": "samples/wordpress-vault/values.yaml",
+      "status": "passed",
+      "replacement_resources_checked": 2
+    },
+    {
+      "path": "values.yaml.example",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    }
+  ]
+}

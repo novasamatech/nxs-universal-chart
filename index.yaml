@@ -1,0 +1,403 @@
+apiVersion: v1
+entries:
+  nxs-universal-chart:
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/changes: "- kind: added\n  description: \"HPA resources now render\
+        \ Kubernetes spec.behavior (scaleUp/scaleDown stabilization windows and policies)\
+        \ when hpas.<name>.behavior is set\"\n- kind: added\n  description: \"CronJobs\
+        \ render spec.jobTemplate.metadata from cronJobs.<name>.jobLabels / jobAnnotations\
+        \ and cronJobsGeneral defaults\"\n- kind: fixed\n  description: \"Deployments\
+        \ and StatefulSets no longer render spec.replicas when replicas is unset,\
+        \ so Helm upgrades stop resetting the replica count managed by an autoscaler\
+        \ (explicit values, including 0, are preserved)\"\n- kind: changed\n  description:\
+        \ \"Deployments and StatefulSets targeted by an enabled hpas entry never render\
+        \ spec.replicas, even when replicas is set\"\n"
+      artifacthub.io/license: Apache License 2.0
+      artifacthub.io/links: "- name: Home\n  url: https://nixys.io\n- name: Source\n\
+        \  url: https://github.com/nixys/nxs-universal-chart\n"
+      artifacthub.io/prerelease: 'false'
+      artifacthub.io/recommendations: '- url: https://nixys.io
+
+        - url: https://github.com/nixys/nxs-universal-chart
+
+        '
+      artifacthub.io/signKey: 'fingerprint: 332FCD67C8B83C68B5AE67884856BB650E18E5427465417E1BC62ED1C417F3BE
+
+        url: https://registry.nixys.io/signkey/cosign.pub
+
+        '
+      novasama.io/omitted-dependencies: '["nuc-keycloak-operator@1.0.1", "nuc-strimzi-kafka-operator@1.0.0"]'
+      novasama.io/replaced-dependencies: '["nuc-traefik@1.0.5->1.0.0", "nuc-certificates@1.0.4->1.0.0",
+        "nuc-fluxcd@1.0.4->1.0.0", "nuc-knative@1.0.5->1.0.0", "nuc-kserve@1.0.4->1.0.0",
+        "nuc-kube-prometheus-stack@1.0.5->1.0.0", "nuc-victoria-metrics@1.0.4->1.0.0",
+        "nuc-keda@1.0.4->1.0.0"]'
+    apiVersion: v2
+    appVersion: v1
+    created: '2026-10-13T15:04:22.657036887Z'
+    dependencies:
+    - name: nuc-common
+      repository: ''
+      version: 1.0.5
+    - condition: nuc-traefik.enabled
+      name: nuc-traefik
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-certificates.enabled
+      name: nuc-certificates
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-istio.enabled
+      name: nuc-istio
+      repository: ''
+      version: 1.0.5
+    - condition: nuc-fluxcd.enabled
+      name: nuc-fluxcd
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-argocd.enabled
+      name: nuc-argocd
+      repository: ''
+      version: 1.0.4
+    - condition: nuc-knative.enabled
+      name: nuc-knative
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-kserve.enabled
+      name: nuc-kserve
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-kube-prometheus-stack.enabled
+      name: nuc-kube-prometheus-stack
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-native-gateway.enabled
+      name: nuc-native-gateway
+      repository: ''
+      version: 1.0.6
+    - condition: nuc-victoria-metrics.enabled
+      name: nuc-victoria-metrics
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-vault-secret-operator.enabled
+      name: nuc-vault-secret-operator
+      repository: ''
+      version: 1.0.5
+    - condition: nuc-keda.enabled
+      name: nuc-keda
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-cloudnativepg.enabled
+      name: nuc-cloudnativepg
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-mysql-percona-operator.enabled
+      name: nuc-mysql-percona-operator
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-rabbitmq.enabled
+      name: nuc-rabbitmq
+      repository: ''
+      version: 1.0.1
+    - condition: nuc-clickhouse.enabled
+      name: nuc-clickhouse
+      repository: ''
+      version: 1.0.1
+    - condition: nuc-elk.enabled
+      name: nuc-elk
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-external-secrets.enabled
+      name: nuc-external-secrets
+      repository: ''
+      version: 1.1.0
+    - condition: nuc-mongodb-percona-operator.enabled
+      name: nuc-mongodb-percona-operator
+      repository: ''
+      version: 1.0.0
+    - condition: global.nuc-envoy-gateway.enabled
+      name: nuc-envoy-gateway
+      repository: ''
+      version: 1.0.1
+    - condition: nuc-valkey.enabled
+      name: nuc-valkey
+      repository: ''
+      version: 1.0.0
+    description: Helm chart for rendering reusable Kubernetes application resources
+    digest: e8b33be0cc60b0656a410cc39f468cf9a0ea7d397d2469944ac673921f290072
+    home: https://github.com/nixys/nxs-universal-chart
+    maintainers:
+    - email: hello@nixys.io
+      name: Nixys Team
+    - email: p.rukin@nixys.ru
+      name: Peter Rukin
+    - email: v.vorobyov@nixys.ru
+      name: Vyacheslav Vorobev
+    name: nxs-universal-chart
+    type: application
+    urls:
+    - https://novasamatech.github.io/nxs-universal-chart/nxs-universal-chart-3.2.2.tgz
+    version: 3.2.2
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/changes: "- kind: fixed\n  description: \"defaultImageTag and\
+        \ container imageTag no longer fail values schema validation when the value\
+        \ is numeric (for example a fully numeric CI_COMMIT_SHORT_SHA): both now accept\
+        \ string, number and boolean values\"\n- kind: fixed\n  description: \"Numeric\
+        \ image tags are rendered as plain strings instead of Go float notation (nginx:20250811\
+        \ instead of nginx:2.0250811e+07)\"\n"
+      artifacthub.io/license: Apache License 2.0
+      artifacthub.io/links: "- name: Home\n  url: https://nixys.io\n- name: Source\n\
+        \  url: https://github.com/nixys/nxs-universal-chart\n"
+      artifacthub.io/prerelease: 'false'
+      artifacthub.io/recommendations: '- url: https://nixys.io
+
+        - url: https://github.com/nixys/nxs-universal-chart
+
+        '
+      artifacthub.io/signKey: 'fingerprint: 332FCD67C8B83C68B5AE67884856BB650E18E5427465417E1BC62ED1C417F3BE
+
+        url: https://registry.nixys.io/signkey/cosign.pub
+
+        '
+      novasama.io/omitted-dependencies: '["nuc-keycloak-operator@1.0.1", "nuc-strimzi-kafka-operator@1.0.0"]'
+      novasama.io/replaced-dependencies: '["nuc-traefik@1.0.5->1.0.0", "nuc-certificates@1.0.4->1.0.0",
+        "nuc-fluxcd@1.0.4->1.0.0", "nuc-knative@1.0.5->1.0.0", "nuc-kserve@1.0.4->1.0.0",
+        "nuc-kube-prometheus-stack@1.0.5->1.0.0", "nuc-victoria-metrics@1.0.4->1.0.0",
+        "nuc-keda@1.0.4->1.0.0"]'
+    apiVersion: v2
+    appVersion: v1
+    created: '2026-10-13T15:04:22.621151906Z'
+    dependencies:
+    - name: nuc-common
+      repository: ''
+      version: 1.0.5
+    - condition: nuc-traefik.enabled
+      name: nuc-traefik
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-certificates.enabled
+      name: nuc-certificates
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-istio.enabled
+      name: nuc-istio
+      repository: ''
+      version: 1.0.5
+    - condition: nuc-fluxcd.enabled
+      name: nuc-fluxcd
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-argocd.enabled
+      name: nuc-argocd
+      repository: ''
+      version: 1.0.4
+    - condition: nuc-knative.enabled
+      name: nuc-knative
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-kserve.enabled
+      name: nuc-kserve
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-kube-prometheus-stack.enabled
+      name: nuc-kube-prometheus-stack
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-native-gateway.enabled
+      name: nuc-native-gateway
+      repository: ''
+      version: 1.0.6
+    - condition: nuc-victoria-metrics.enabled
+      name: nuc-victoria-metrics
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-vault-secret-operator.enabled
+      name: nuc-vault-secret-operator
+      repository: ''
+      version: 1.0.5
+    - condition: nuc-keda.enabled
+      name: nuc-keda
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-cloudnativepg.enabled
+      name: nuc-cloudnativepg
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-mysql-percona-operator.enabled
+      name: nuc-mysql-percona-operator
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-rabbitmq.enabled
+      name: nuc-rabbitmq
+      repository: ''
+      version: 1.0.1
+    - condition: nuc-clickhouse.enabled
+      name: nuc-clickhouse
+      repository: ''
+      version: 1.0.1
+    - condition: nuc-elk.enabled
+      name: nuc-elk
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-external-secrets.enabled
+      name: nuc-external-secrets
+      repository: ''
+      version: 1.1.0
+    - condition: nuc-mongodb-percona-operator.enabled
+      name: nuc-mongodb-percona-operator
+      repository: ''
+      version: 1.0.0
+    - condition: global.nuc-envoy-gateway.enabled
+      name: nuc-envoy-gateway
+      repository: ''
+      version: 1.0.1
+    - condition: nuc-valkey.enabled
+      name: nuc-valkey
+      repository: ''
+      version: 1.0.0
+    description: Helm chart for rendering reusable Kubernetes application resources
+    digest: 5f0c993ceb01b0d51829fd0119255c77a211917fb0e3bd85f46514826c9fea6b
+    home: https://github.com/nixys/nxs-universal-chart
+    maintainers:
+    - email: hello@nixys.io
+      name: Nixys Team
+    - email: p.rukin@nixys.ru
+      name: Peter Rukin
+    - email: v.vorobyov@nixys.ru
+      name: Vyacheslav Vorobev
+    name: nxs-universal-chart
+    type: application
+    urls:
+    - https://novasamatech.github.io/nxs-universal-chart/nxs-universal-chart-3.2.1.tgz
+    version: 3.2.1
+  - annotations:
+      artifacthub.io/category: integration-delivery
+      artifacthub.io/changes: "- kind: added\n  description: \"Added: NUC Subchart\
+        \ for Strimzi Kafka Operator\"\n"
+      artifacthub.io/license: Apache License 2.0
+      artifacthub.io/links: "- name: Home\n  url: https://nixys.io\n- name: Source\n\
+        \  url: https://github.com/nixys/nxs-universal-chart\n"
+      artifacthub.io/prerelease: 'false'
+      artifacthub.io/recommendations: '- url: https://nixys.io
+
+        - url: https://github.com/nixys/nxs-universal-chart
+
+        '
+      artifacthub.io/signKey: 'fingerprint: 332FCD67C8B83C68B5AE67884856BB650E18E5427465417E1BC62ED1C417F3BE
+
+        url: https://registry.nixys.io/signkey/cosign.pub
+
+        '
+      novasama.io/omitted-dependencies: '["nuc-keycloak-operator@1.0.1", "nuc-strimzi-kafka-operator@1.0.0"]'
+      novasama.io/replaced-dependencies: '["nuc-traefik@1.0.5->1.0.0", "nuc-certificates@1.0.4->1.0.0",
+        "nuc-fluxcd@1.0.4->1.0.0", "nuc-knative@1.0.5->1.0.0", "nuc-kserve@1.0.4->1.0.0",
+        "nuc-kube-prometheus-stack@1.0.5->1.0.0", "nuc-victoria-metrics@1.0.4->1.0.0",
+        "nuc-keda@1.0.4->1.0.0"]'
+    apiVersion: v2
+    appVersion: v1
+    created: '2026-10-13T15:04:22.585346626Z'
+    dependencies:
+    - name: nuc-common
+      repository: ''
+      version: 1.0.5
+    - condition: nuc-traefik.enabled
+      name: nuc-traefik
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-certificates.enabled
+      name: nuc-certificates
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-istio.enabled
+      name: nuc-istio
+      repository: ''
+      version: 1.0.5
+    - condition: nuc-fluxcd.enabled
+      name: nuc-fluxcd
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-argocd.enabled
+      name: nuc-argocd
+      repository: ''
+      version: 1.0.4
+    - condition: nuc-knative.enabled
+      name: nuc-knative
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-kserve.enabled
+      name: nuc-kserve
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-kube-prometheus-stack.enabled
+      name: nuc-kube-prometheus-stack
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-native-gateway.enabled
+      name: nuc-native-gateway
+      repository: ''
+      version: 1.0.6
+    - condition: nuc-victoria-metrics.enabled
+      name: nuc-victoria-metrics
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-vault-secret-operator.enabled
+      name: nuc-vault-secret-operator
+      repository: ''
+      version: 1.0.5
+    - condition: nuc-keda.enabled
+      name: nuc-keda
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-cloudnativepg.enabled
+      name: nuc-cloudnativepg
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-mysql-percona-operator.enabled
+      name: nuc-mysql-percona-operator
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-rabbitmq.enabled
+      name: nuc-rabbitmq
+      repository: ''
+      version: 1.0.1
+    - condition: nuc-clickhouse.enabled
+      name: nuc-clickhouse
+      repository: ''
+      version: 1.0.1
+    - condition: nuc-elk.enabled
+      name: nuc-elk
+      repository: ''
+      version: 1.0.0
+    - condition: nuc-external-secrets.enabled
+      name: nuc-external-secrets
+      repository: ''
+      version: 1.1.0
+    - condition: nuc-mongodb-percona-operator.enabled
+      name: nuc-mongodb-percona-operator
+      repository: ''
+      version: 1.0.0
+    - condition: global.nuc-envoy-gateway.enabled
+      name: nuc-envoy-gateway
+      repository: ''
+      version: 1.0.1
+    - condition: nuc-valkey.enabled
+      name: nuc-valkey
+      repository: ''
+      version: 1.0.0
+    description: Helm chart for rendering reusable Kubernetes application resources
+    digest: 2ccd8d448f12c6bb894e0ecb916eeb95c637160dceeb84b0227e1ba96b2be403
+    home: https://github.com/nixys/nxs-universal-chart
+    maintainers:
+    - email: hello@nixys.io
+      name: Nixys Team
+    - email: p.rukin@nixys.ru
+      name: Peter Rukin
+    - email: v.vorobyov@nixys.ru
+      name: Vyacheslav Vorobev
+    name: nxs-universal-chart
+    type: application
+    urls:
+    - https://novasamatech.github.io/nxs-universal-chart/nxs-universal-chart-3.1.0.tgz
+    version: 3.1.0
+generated: '2026-10-13T15:04:22.549092633Z'
