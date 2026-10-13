@@ -1,0 +1,44 @@
+{
+  "version": "2.5.1",
+  "upstream_tag": "v2.5.1",
+  "upstream_commit": "8469512ba7fab4a92262813e200e58a34e073d07",
+  "upstream_tag_commit": "3737bd8cce9073f09e7221b723803d382aa27c3e",
+  "source_kind": "pinned-commit",
+  "metadata_changes": [
+    {
+      "field": "name",
+      "from": "universal-chart",
+      "to": "nxs-universal-chart"
+    }
+  ],
+  "metadata_normalization_checks": 6,
+  "sha256": "7b5df2b63f28bbe9b1e04409c0666178a9d6a57f89ecfd208f789ac375f21412",
+  "dependencies": [],
+  "samples": [
+    {
+      "path": "docs/samples/cronjobs.values.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/web-app.values.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/whoami/app-deployment.values.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/whoami/app-statefulset.values.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/whoami/app-with-volumes.values.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    }
+  ]
+}

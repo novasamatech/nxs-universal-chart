@@ -1,0 +1,60 @@
+{
+  "version": "2.8.1",
+  "upstream_tag": "v2.8.1",
+  "upstream_commit": "08aef1f3c42c1b91f0d0eba01e85a8a6f44f273a",
+  "upstream_tag_commit": "a6e4731cd2c88f8c9512cd459fb1cde911fc11bd",
+  "source_kind": "pinned-commit",
+  "metadata_changes": [
+    {
+      "field": "name",
+      "from": "universal-chart",
+      "to": "nxs-universal-chart"
+    }
+  ],
+  "metadata_normalization_checks": 9,
+  "sha256": "81558af05a8f1b0a133a51315c740153698e7f92668222024f7a5b526aa20c79",
+  "dependencies": [],
+  "samples": [
+    {
+      "path": "docs/samples/certificates.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/cronjobs.values.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/issuers.yml",
+      "example_override": "The example's empty generic block parses as null; use an empty map for validation",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/web-app.values.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/whoami/app-deployment.values.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/whoami/app-statefulset.values.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/whoami/app-with-certs.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    },
+    {
+      "path": "docs/samples/whoami/app-with-volumes.values.yml",
+      "status": "passed",
+      "replacement_resources_checked": 0
+    }
+  ]
+}

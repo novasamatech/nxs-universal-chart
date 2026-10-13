@@ -400,4 +400,58 @@ entries:
     urls:
     - https://novasamatech.github.io/nxs-universal-chart/nxs-universal-chart-3.1.0.tgz
     version: 3.1.0
-generated: '2026-10-13T15:04:22.549092633Z'
+  - annotations:
+      novasama.io/original-chart-name: universal-chart
+      novasama.io/upstream-commit: 08aef1f3c42c1b91f0d0eba01e85a8a6f44f273a
+    apiVersion: v2
+    created: '2026-10-13T15:31:05.655124324Z'
+    description: Nixys universal Helm chart for deploy your apps to Kubernetes
+    digest: 81558af05a8f1b0a133a51315c740153698e7f92668222024f7a5b526aa20c79
+    maintainers:
+    - email: r.andreev@nixys.io
+      name: Roman Andreev
+    - email: a.zhideev@nixys.io
+      name: Anton Zhideev
+    - email: evg.krsk@gmail.com
+      name: Evgenii Tereshkov
+    - email: s@lavr.me
+      name: Sergey Lavrinenko
+    - email: v.sokhan@nixys.io
+      name: Viktor Sokhan
+    - email: gromrx1@gmail.com
+      name: Ruslan Gainanov
+    - email: a.danielyan@nixys.io
+      name: Artem Danielyan
+    - email: r.emelyanov@nixys.io
+      name: Roman Emelyanov
+    name: nxs-universal-chart
+    urls:
+    - https://novasamatech.github.io/nxs-universal-chart/nxs-universal-chart-2.8.1.tgz
+    version: 2.8.1
+  - annotations:
+      novasama.io/original-chart-name: universal-chart
+      novasama.io/upstream-commit: 8469512ba7fab4a92262813e200e58a34e073d07
+    apiVersion: v2
+    created: '2026-10-13T15:31:05.653623158Z'
+    description: Nixys universal Helm chart for deploy your apps to Kubernetes
+    digest: 7b5df2b63f28bbe9b1e04409c0666178a9d6a57f89ecfd208f789ac375f21412
+    maintainers:
+    - email: r.andreev@nixys.ru
+      name: Roman Andreev
+    - email: a.zhideev@nixys.ru
+      name: Anton Zhideev
+    - email: evg.krsk@gmail.com
+      name: Evgenii Tereshkov
+    - email: s@lavr.me
+      name: Sergey Lavrinenko
+    - email: v.sokhan@nixys.ru
+      name: Viktor Sokhan
+    - email: gromrx1@gmail.com
+      name: Ruslan Gainanov
+    - email: a.danielyan@nixys.ru
+      name: Artem Danielyan
+    name: nxs-universal-chart
+    urls:
+    - https://novasamatech.github.io/nxs-universal-chart/nxs-universal-chart-2.5.1.tgz
+    version: 2.5.1
+generated: '2026-10-13T15:31:05.652639433Z'
