@@ -8,6 +8,8 @@ Verified from the public upstream Git history on 2026-10-13:
 | 2.8.1 | v2.8.1: name universal-chart, version 2.8.0 | 08aef1f3c42c1b91f0d0eba01e85a8a6f44f273a |
 
 Repository: <https://github.com/nixys/nxs-universal-chart>.
+Build source mirror: <https://github.com/novasamatech/nxs-universal-chart>.
+The builder reads the pinned commits from this fork, not the upstream repository.
 
 Both listed commits declare `name: universal-chart`. Building a package named
 `nxs-universal-chart` from either tree requires an explicit metadata normalization.

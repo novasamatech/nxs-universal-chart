@@ -12,7 +12,7 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from build import Builder, enabled, merge_values, normalized_manifests, sample_files
-from common import HELM, digest, extract, load_yaml, run, write_yaml
+from common import CONFIG, HELM, ROOT, digest, extract, load_yaml, run, write_yaml
 from guard import guard
 from release import select_versions, update_index
 from sync import merge_check
@@ -139,7 +139,30 @@ class ToolingTests(unittest.TestCase):
         error = subprocess.CompletedProcess([], 128, "", "Failed to connect to github.com")
         with (patch("build.run", return_value=error),
               self.assertRaisesRegex(RuntimeError, "will not silently omit")):
-            builder.repository("https://github.com/nixys/dep.git")
+            builder.repository("https://github.com/novasamatech/dep.git")
+
+    def test_missing_fork_never_falls_back_to_upstream(self):
+        builder = Builder(self.root / "cache", {})
+        with patch.object(builder, "repository", return_value=None) as repository:
+            result = builder.resolve("dep", "1.2.3", self.root / "resolved")
+        self.assertEqual(result["source"], "omitted")
+        repository.assert_called_once_with("https://github.com/novasamatech/dep.git")
+
+    def test_chart_source_never_falls_back_to_upstream(self):
+        builder = Builder(self.root / "cache", {})
+        with (patch.object(builder, "repository", return_value=None) as repository,
+              self.assertRaisesRegex(RuntimeError, "Chart source repository is unavailable")):
+            builder.build("3.2.1", self.root / "output")
+        repository.assert_called_once_with("https://github.com/novasamatech/nxs-universal-chart.git")
+
+    def test_build_sources_are_fork_owned(self):
+        self.assertEqual(CONFIG["source"], "https://github.com/novasamatech/nxs-universal-chart.git")
+        self.assertEqual(CONFIG["dependency_owner"], "novasamatech")
+        dependencies = load_yaml(ROOT / ".novasama/dependencies.yaml")
+        for section in ("overrides", "fallbacks"):
+            for key, entry in dependencies[section].items():
+                with self.subTest(dependency=key):
+                    self.assertTrue(entry["repo"].startswith("https://github.com/novasamatech/"))
 
     def test_guard_disables_only_upstream_workflow_files(self):
         workflows = {"workflows": [
@@ -184,11 +207,13 @@ class ToolingTests(unittest.TestCase):
         run("git", "-c", "commit.gpgsign=false", "commit", "-m", "fixture", cwd=repo)
         commit = run("git", "rev-parse", "HEAD", cwd=repo).stdout.strip()
         run("git", "tag", "v1.2.3", cwd=repo)
-        entry = {"repo": "https://github.com/nixys/dep.git", "commit": commit, "path": "."}
+        entry = {"repo": "https://github.com/novasamatech/dep.git", "commit": commit, "path": "."}
         builder = Builder(self.root / "cache", {"overrides": {"dep@1.2.3": entry}})
-        with patch.object(builder, "repository", return_value=repo / ".git"):
+        with patch.object(builder, "repository", return_value=repo / ".git") as repository:
             result = builder.resolve("dep", "1.2.3", self.root / "tagged")
             self.assertEqual(result["source"], "tag")
+            self.assertEqual(result["repo"], "https://github.com/novasamatech/dep.git")
+            repository.assert_called_once_with("https://github.com/novasamatech/dep.git")
             run("git", "tag", "--delete", "v1.2.3", cwd=repo)
             result = builder.resolve("dep", "1.2.3", self.root / "override")
             self.assertEqual(result["source"], "override")
@@ -235,6 +260,7 @@ class ToolingTests(unittest.TestCase):
         output = self.root / "output"
         with patch.object(builder, "repository", return_value=repo / ".git"):
             report = builder.build("1.2.3", output)
+            self.assertEqual(report["source_repository"], "https://github.com/novasamatech/nxs-universal-chart.git")
             self.assertEqual(report["upstream_commit"], commit)
             self.assertEqual(report["metadata_normalization_checks"], 1)
             self.assertEqual(report["metadata_changes"], [{"field": "name", "from": "universal-chart", "to": "nxs-universal-chart"}])

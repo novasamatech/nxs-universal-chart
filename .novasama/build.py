@@ -1,4 +1,4 @@
-"""Build self-contained charts from exported upstream trees, never from main."""
+"""Build self-contained charts from fork-owned source trees, never over main."""
 
 import argparse
 import copy
@@ -178,7 +178,7 @@ class Builder:
 
     def resolve(self, name, version, destination):
         key = f"{name}@{version}"
-        url = f"https://github.com/nixys/{name}.git"
+        url = f'https://github.com/{CONFIG["dependency_owner"]}/{name}.git'
         repository = self.repository(url)
         if repository is not None:
             for tag in ("v" + version, version):
@@ -386,9 +386,9 @@ class Builder:
         self.records = []
         output = Path(output)
         output.mkdir(parents=True, exist_ok=True)
-        repository = self.repository(CONFIG["upstream"])
+        repository = self.repository(CONFIG["source"])
         if repository is None:
-            raise RuntimeError("Upstream repository is unavailable")
+            raise RuntimeError("Chart source repository is unavailable")
         tag = "v" + version
         tag_commit = run("git", "--git-dir", repository, "rev-parse", "--verify", f"refs/tags/{tag}^{{commit}}").stdout.strip()
         source = self.sources.get(version)
@@ -430,13 +430,15 @@ class Builder:
                 if source_files != packaged_files:
                     raise RuntimeError("Legacy templates/defaults changed during packaging")
             samples = self.validate(packaged, samples_root=directory, baseline=baseline)
-            report = {"version": version, "upstream_tag": tag, "upstream_commit": commit,
+            report = {"version": version, "source_repository": CONFIG["source"],
+                      "upstream_tag": tag, "upstream_commit": commit,
                       "upstream_tag_commit": tag_commit,
                       "source_kind": "pinned-commit" if source else "tag",
                       "metadata_changes": metadata_changes,
                       "metadata_normalization_checks": len(samples) + 1 if baseline else 0,
                       "sha256": digest(package), "dependencies": self.records, "samples": samples}
-            notes = [f"# {CHART_NAME} {version}", "", f"Upstream tag: `{tag}` at `{tag_commit}`.",
+            notes = [f"# {CHART_NAME} {version}", "", f'Source repository: {CONFIG["source"]}.',
+                     f"Upstream tag: `{tag}` at `{tag_commit}`.",
                      f"Built public upstream commit: `{commit}`.",
                      f"Package SHA256: `{report['sha256']}`.", "", "## Dependencies", ""]
             for record in self.records:

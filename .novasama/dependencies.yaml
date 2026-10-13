@@ -7,49 +7,49 @@ vendor: {}
 fallbacks:
   nuc-traefik@1.0.5:
     version: "1.0.0"
-    repo: https://github.com/nixys/nuc-traefik.git
+    repo: https://github.com/novasamatech/nuc-traefik.git
     commit: 639da922df97a0906edfbc9caa323f1aa8570dfe
     path: .
     resources: {ingressRoutes: IngressRoute, ingressRouteTCPs: IngressRouteTCP, ingressRouteUDPs: IngressRouteUDP, middlewares: Middleware, middlewareTCPs: MiddlewareTCP, serversTransports: ServersTransport, serversTransportTCPs: ServersTransportTCP, tlsOptions: TLSOption, tlsStores: TLSStore, traefikServices: TraefikService}
   nuc-certificates@1.0.4:
     version: "1.0.0"
-    repo: https://github.com/nixys/nuc-certificates.git
+    repo: https://github.com/novasamatech/nuc-certificates.git
     commit: f63e06d1a519a1494d98173ec9beb1e883ef864d
     path: .
     resources: {certificates: Certificate, certificateRequests: CertificateRequest, challenges: Challenge, clusterIssuers: ClusterIssuer, issuers: Issuer, orders: Order}
   nuc-fluxcd@1.0.4:
     version: "1.0.0"
-    repo: https://github.com/nixys/nuc-fluxcd.git
+    repo: https://github.com/novasamatech/nuc-fluxcd.git
     commit: 6878146acbc2db61c7ea26d81b43669ff8b2b5ea
     path: .
     resources: {alerts: Alert, artifactGenerators: ArtifactGenerator, buckets: Bucket, externalArtifacts: ExternalArtifact, gitRepositories: GitRepository, helmCharts: HelmChart, helmReleases: HelmRelease, helmRepositories: HelmRepository, imagePolicies: ImagePolicy, imageRepositories: ImageRepository, imageUpdateAutomations: ImageUpdateAutomation, kustomizations: Kustomization, ociRepositories: OCIRepository, providers: Provider, receivers: Receiver}
   nuc-knative@1.0.5:
     version: "1.0.0"
-    repo: https://github.com/nixys/nuc-knative.git
+    repo: https://github.com/novasamatech/nuc-knative.git
     commit: 7af5af4360695b30c24a4f8905dca13785e98bd3
     path: .
     resources: {certificates: Certificate, clusterDomainClaims: ClusterDomainClaim, configurations: Configuration, domainMappings: DomainMapping, images: Image, ingresses: Ingress, metrics: Metric, podAutoscalers: PodAutoscaler, revisions: Revision, routes: Route, serverlessServices: ServerlessService, services: Service}
   nuc-kserve@1.0.4:
     version: "1.0.0"
-    repo: https://github.com/nixys/nuc-kserve.git
+    repo: https://github.com/novasamatech/nuc-kserve.git
     commit: 91d7eb0acd7d44281d7ca6e861af66d24ca52cdc
     path: .
     resources: {clusterServingRuntimes: ClusterServingRuntime, clusterStorageContainers: ClusterStorageContainer, inferenceGraphs: InferenceGraph, inferenceServices: InferenceService, localModelCaches: LocalModelCache, localModelNodeGroups: LocalModelNodeGroup, localModelNodes: LocalModelNode, servingRuntimes: ServingRuntime, trainedModels: TrainedModel}
   nuc-kube-prometheus-stack@1.0.5:
     version: "1.0.0"
-    repo: https://github.com/nixys/nuc-kube-prometheus-stack.git
+    repo: https://github.com/novasamatech/nuc-kube-prometheus-stack.git
     commit: cef7f233ce99da9b2d40671e35ae64ddbf97a561
     path: .
     resources: {serviceMonitors: ServiceMonitor, scrapeConfigs: ScrapeConfig, prometheusRules: PrometheusRule, probes: Probe, podMonitors: PodMonitor}
   nuc-victoria-metrics@1.0.4:
     version: "1.0.0"
-    repo: https://github.com/nixys/nuc-victoria-metrics.git
+    repo: https://github.com/novasamatech/nuc-victoria-metrics.git
     commit: 82502f6190d82f55e8b700adcc7bc3b7eeabf9ce
     path: .
     resources: {vmAlerts: VMAlert, vmProbes: VMProbe, vmRules: VMRule, vmScrapeConfigs: VMScrapeConfig, vmServiceScrapes: VMServiceScrape, vmStaticScrapes: VMStaticScrape}
   nuc-keda@1.0.4:
     version: "1.0.0"
-    repo: https://github.com/nixys/nuc-keda.git
+    repo: https://github.com/novasamatech/nuc-keda.git
     commit: 626f1ddd8a97502e762f13164a86961a18b87da5
     path: .
     resources: {scaledObjects: ScaledObject, scaledJobs: ScaledJob, triggerAuthentications: TriggerAuthentication, clusterTriggerAuthentications: ClusterTriggerAuthentication}

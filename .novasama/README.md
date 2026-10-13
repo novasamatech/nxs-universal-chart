@@ -43,8 +43,10 @@ identity, or use the configured Git identity in `config.yaml` when CI has none.
 
 ## Dependency resolution
 
-Builds export public upstream tags or explicitly pinned commits into temporary
-directories and assert source chart name/version. The `sources` entries in
+Builds export tags or explicitly pinned commits from
+`novasamatech/nxs-universal-chart` into temporary directories and assert source
+chart name/version. `config.yaml` separates the build `source` from `upstream`,
+which is used only by the upstream sync job. The `sources` entries in
 `charts.yaml` pin 2.5.1 and 2.8.1 to public upstream trees with exact versions.
 Their chart name is normalized from `universal-chart` to `nxs-universal-chart`
 in the build copy. Defaults and examples are compared before and after this
@@ -55,11 +57,19 @@ changes are recorded in provenance. Checksum-pinned example overlays affect
 validation inputs only and are recorded in source configuration and notes.
 Dependency resolution recurses and tries:
 
-1. `nixys/<name>` tag `v<version>` or `<version>` with exact chart metadata.
+1. `novasamatech/<name>` tag `v<version>` or `<version>` with exact chart metadata.
 2. An exact `name@version` override with a full commit SHA and chart path.
 3. A checksum-pinned `.novasama/vendor/<name>-<version>.tgz` original.
 4. An explicitly configured replacement in `dependencies.yaml`.
 5. Remove an unresolved conditional dependency; fail for an unconditional one.
+
+The 22 available dependency repositories are forked into `novasamatech`.
+Tag resolution uses `config.yaml`'s `dependency_owner`; replacements use explicit
+fork URLs in `dependencies.yaml`. There is no automatic fallback to upstream
+repositories. Forks must retain the audited tags and pinned commits. Actions are
+disabled in the dependency forks, so inherited workflows cannot run. Updating
+those forks is a separate, reviewed operation; the main sync job does not sync
+dependency forks or copy new upstream release tags.
 
 Replacements are never inferred automatically. The following replacements use pinned public
 `1.0.0` trees, and both requested and actual versions appear in notes, JSON
@@ -106,9 +116,11 @@ the same, including the public Envoy Gateway defaults' documentation after `...`
 ## Add a version
 
 Add an exact version to `.novasama/charts.yaml`, commit, and push to `main`.
-The workflow resolves `nixys/nxs-universal-chart` tag `v<version>` unless the
+The workflow resolves `novasamatech/nxs-universal-chart` tag `v<version>` unless the
 version has a pinned source entry. Unexpected source names or versions fail.
 Only an explicitly configured source name can be normalized.
+Import and verify the required public source tag into the fork before adding
+a new tagged version. Upstream main synchronization alone does not import tags.
 
 ```sh
 gh workflow run novasama-release.yml --repo novasamatech/nxs-universal-chart --ref main
@@ -127,7 +139,7 @@ findings in `history_audit`. An override must match the exact requested metadata
 ```yaml
 overrides:
   nuc-example@1.2.3:
-    repo: https://github.com/owner/nuc-example.git
+    repo: https://github.com/novasamatech/nuc-example.git
     commit: 0123456789abcdef0123456789abcdef01234567
     path: charts/nuc-example
 ```

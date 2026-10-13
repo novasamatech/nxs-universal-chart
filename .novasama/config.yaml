@@ -1,4 +1,6 @@
 repository: novasamatech/nxs-universal-chart
+source: https://github.com/novasamatech/nxs-universal-chart.git
+dependency_owner: novasamatech
 upstream: https://github.com/nixys/nxs-universal-chart.git
 pages_url: https://novasamatech.github.io/nxs-universal-chart
 git_author:
