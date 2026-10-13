@@ -1,0 +1,86 @@
+# Keys are exact name@version pairs. Tags take precedence over overrides/vendor.
+overrides: {}
+vendor: {}
+
+# Pinned compatibility replacements. Exact originals still win.
+# Build validation checks the supplied resource names/kinds/specs in samples.
+fallbacks:
+  nuc-traefik@1.0.5:
+    version: "1.0.0"
+    repo: https://github.com/nixys/nuc-traefik.git
+    commit: 639da922df97a0906edfbc9caa323f1aa8570dfe
+    path: .
+    resources: {ingressRoutes: IngressRoute, ingressRouteTCPs: IngressRouteTCP, ingressRouteUDPs: IngressRouteUDP, middlewares: Middleware, middlewareTCPs: MiddlewareTCP, serversTransports: ServersTransport, serversTransportTCPs: ServersTransportTCP, tlsOptions: TLSOption, tlsStores: TLSStore, traefikServices: TraefikService}
+  nuc-certificates@1.0.4:
+    version: "1.0.0"
+    repo: https://github.com/nixys/nuc-certificates.git
+    commit: f63e06d1a519a1494d98173ec9beb1e883ef864d
+    path: .
+    resources: {certificates: Certificate, certificateRequests: CertificateRequest, challenges: Challenge, clusterIssuers: ClusterIssuer, issuers: Issuer, orders: Order}
+  nuc-fluxcd@1.0.4:
+    version: "1.0.0"
+    repo: https://github.com/nixys/nuc-fluxcd.git
+    commit: 6878146acbc2db61c7ea26d81b43669ff8b2b5ea
+    path: .
+    resources: {alerts: Alert, artifactGenerators: ArtifactGenerator, buckets: Bucket, externalArtifacts: ExternalArtifact, gitRepositories: GitRepository, helmCharts: HelmChart, helmReleases: HelmRelease, helmRepositories: HelmRepository, imagePolicies: ImagePolicy, imageRepositories: ImageRepository, imageUpdateAutomations: ImageUpdateAutomation, kustomizations: Kustomization, ociRepositories: OCIRepository, providers: Provider, receivers: Receiver}
+  nuc-knative@1.0.5:
+    version: "1.0.0"
+    repo: https://github.com/nixys/nuc-knative.git
+    commit: 7af5af4360695b30c24a4f8905dca13785e98bd3
+    path: .
+    resources: {certificates: Certificate, clusterDomainClaims: ClusterDomainClaim, configurations: Configuration, domainMappings: DomainMapping, images: Image, ingresses: Ingress, metrics: Metric, podAutoscalers: PodAutoscaler, revisions: Revision, routes: Route, serverlessServices: ServerlessService, services: Service}
+  nuc-kserve@1.0.4:
+    version: "1.0.0"
+    repo: https://github.com/nixys/nuc-kserve.git
+    commit: 91d7eb0acd7d44281d7ca6e861af66d24ca52cdc
+    path: .
+    resources: {clusterServingRuntimes: ClusterServingRuntime, clusterStorageContainers: ClusterStorageContainer, inferenceGraphs: InferenceGraph, inferenceServices: InferenceService, localModelCaches: LocalModelCache, localModelNodeGroups: LocalModelNodeGroup, localModelNodes: LocalModelNode, servingRuntimes: ServingRuntime, trainedModels: TrainedModel}
+  nuc-kube-prometheus-stack@1.0.5:
+    version: "1.0.0"
+    repo: https://github.com/nixys/nuc-kube-prometheus-stack.git
+    commit: cef7f233ce99da9b2d40671e35ae64ddbf97a561
+    path: .
+    resources: {serviceMonitors: ServiceMonitor, scrapeConfigs: ScrapeConfig, prometheusRules: PrometheusRule, probes: Probe, podMonitors: PodMonitor}
+  nuc-victoria-metrics@1.0.4:
+    version: "1.0.0"
+    repo: https://github.com/nixys/nuc-victoria-metrics.git
+    commit: 82502f6190d82f55e8b700adcc7bc3b7eeabf9ce
+    path: .
+    resources: {vmAlerts: VMAlert, vmProbes: VMProbe, vmRules: VMRule, vmScrapeConfigs: VMScrapeConfig, vmServiceScrapes: VMServiceScrape, vmStaticScrapes: VMStaticScrape}
+  nuc-keda@1.0.4:
+    version: "1.0.0"
+    repo: https://github.com/nixys/nuc-keda.git
+    commit: 626f1ddd8a97502e762f13164a86961a18b87da5
+    path: .
+    resources: {scaledObjects: ScaledObject, scaledJobs: ScaledJob, triggerAuthentications: TriggerAuthentication, clusterTriggerAuthentications: ClusterTriggerAuthentication}
+
+# Full public Chart.yaml histories were inspected once on 2026-10-13.
+# No commit override is needed for the audited versions.
+history_audit:
+  checked_at: "2026-10-13"
+  tagged:
+    nuc-common@1.0.5: b80e8b7fc002886c777d520413a2e453a312c48e
+    nuc-istio@1.0.5: 2c2704b9ae9e68f5c527a536f07c4c39814d598f
+    nuc-argocd@1.0.4: 3df6e4ebb353dbcbd99252517336234f2be0d1bb
+    nuc-native-gateway@1.0.6: 805a0a22fe4e534b401eec154232e77883d80502
+    nuc-vault-secret-operator@1.0.5: eb7b9f581426ee651f44d8af20725fd4ef1c8be8
+    nuc-cloudnativepg@1.0.0: ec0930eea8917597279a928298e30824357c4ee2
+    nuc-mysql-percona-operator@1.0.0: 623e25d6fbe1302c15081e394dca1252dbc610dd
+    nuc-rabbitmq@1.0.1: e492bf4390034d4fee8927529f4d927e8fbb8f9c
+    nuc-clickhouse@1.0.1: 01963860792f5a503fe41807c3b238d6f8231823
+    nuc-elk@1.0.0: 9da7f58e6f1de3bd3240021dc31a4323c25a080b
+    nuc-external-secrets@1.1.0: 23d5c783b113ad16db8d99ba6df668a5d6745134
+    nuc-mongodb-percona-operator@1.0.0: 63f3f484183a46301de5a8ab042bede83df3185c
+    nuc-envoy-gateway@1.0.1: 3fd706f24630b3e7d74a2cdaa60429eb0c03df63
+    nuc-valkey@1.0.0: a783b64e546c2d9e0d8757ad5ab7166c47a3889a
+  unavailable:
+    nuc-traefik@1.0.5: {chart_history_commits: 12, reason: "No exact version; latest tag v1.0.0"}
+    nuc-certificates@1.0.4: {chart_history_commits: 12, reason: "No exact version; latest tag v1.0.0"}
+    nuc-fluxcd@1.0.4: {chart_history_commits: 8, reason: "No exact version; latest tag v1.0.0"}
+    nuc-knative@1.0.5: {chart_history_commits: 12, reason: "No exact version; latest tag v1.0.0"}
+    nuc-kserve@1.0.4: {chart_history_commits: 12, reason: "No exact version; latest tag v1.0.0"}
+    nuc-kube-prometheus-stack@1.0.5: {chart_history_commits: 12, reason: "No exact version; latest tag v1.0.0"}
+    nuc-victoria-metrics@1.0.4: {chart_history_commits: 13, reason: "No exact version; latest tag v1.0.0"}
+    nuc-keda@1.0.4: {chart_history_commits: 10, reason: "No exact version; latest tag v1.0.0"}
+    nuc-keycloak-operator@1.0.1: {reason: "No public repository (GitHub API 404)"}
+    nuc-strimzi-kafka-operator@1.0.0: {reason: "No public repository (GitHub API 404)"}

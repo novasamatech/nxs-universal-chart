@@ -1,0 +1,98 @@
+name: Novasama Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Listed version to publish (empty means all missing versions)
+        type: string
+        default: ""
+      force:
+        description: Explicitly rebuild this one version (requires version)
+        type: boolean
+        default: false
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        default: ""
+  push:
+    branches: [main]
+    paths: [".novasama/**"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: novasama-release
+  cancel-in-progress: false
+
+jobs:
+  guard:
+    if: github.repository == 'novasamatech/nxs-universal-chart' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Disable upstream workflows
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: /usr/bin/python3 .novasama/guard.py
+
+  publish:
+    needs: guard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Install checksum-pinned Helm
+        run: /usr/bin/python3 .novasama/install_helm.py
+      - name: Build and publish missing versions
+        env:
+          REQUESTED_VERSION: ${{ inputs.version || '' }}
+          FORCE_REBUILD: ${{ github.event_name == 'workflow_dispatch' && inputs.force && 'true' || 'false' }}
+        run: /usr/bin/python3 .novasama/release.py --publish
+
+  deploy:
+    needs: publish
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          persist-credentials: false
+          sparse-checkout: .novasama
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: gh-pages
+          persist-credentials: false
+          path: published
+      - name: Archive the published branch
+        run: /usr/bin/python3 .novasama/pages.py published "$RUNNER_TEMP/novasama-pages/artifact.tar"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/novasama-pages/artifact.tar
+          retention-days: 1
+          compression-level: 0
+          if-no-files-found: error
+      - name: Deploy the published gh-pages tree
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5

@@ -1,0 +1,6 @@
+repository: novasamatech/nxs-universal-chart
+upstream: https://github.com/nixys/nxs-universal-chart.git
+pages_url: https://novasamatech.github.io/nxs-universal-chart
+git_author:
+  name: kogeler
+  email: 25884155+kogeler@users.noreply.github.com
