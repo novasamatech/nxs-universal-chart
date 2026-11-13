@@ -101,6 +101,9 @@
         "extraSelectorLabels": {
           "$ref": "#/definitions/stringMap"
         },
+        "useDefaultSelectorLabels": {
+          "type": "boolean"
+        },
         "podLabels": {
           "$ref": "#/definitions/stringMap"
         },
@@ -1237,6 +1240,10 @@
         },
         "minAvailable": {},
         "maxUnavailable": {},
+        "unhealthyPodEvictionPolicy": {
+          "type": "string",
+          "enum": ["IfHealthyBudget", "AlwaysAllow"]
+        },
         "extraSelectorLabels": {
           "$ref": "#/definitions/stringMap"
         }

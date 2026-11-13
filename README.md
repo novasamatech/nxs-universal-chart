@@ -192,6 +192,7 @@ Schema matching note:
 | `generic.nameSuffix` | `generic.nameSuffix: "blue"` | `""` | Suffix appended to deterministic base name. |
 | `generic.deterministicNames` | `generic.deterministicNames: true` | `true` | Enables deterministic fallback names for unnamed containers/initContainers. |
 | `generic.autoRolloutChecksums` | `generic.autoRolloutChecksums: true` | `true` | Adds checksum pod annotations for ConfigMaps/Secrets referenced by each workload. |
+| `generic.useDefaultSelectorLabels` | `generic.useDefaultSelectorLabels: false` | `true` | Includes `app.kubernetes.io/name` and `app.kubernetes.io/instance` in selectors. Set to `false` to select only by `extraSelectorLabels`; pods keep the standard labels. `extraSelectorLabels` keys override standard label values. Rendering fails if a selector, including a pod affinity preset selector, is empty. Selectors without `instance` can overlap with other releases in the namespace. Changing selectors of existing workloads requires recreating them. |
 | `generic.extraSelectorLabels` | `generic.extraSelectorLabels.tenant: "shared"` | `{}` | Extra labels merged into selectors and pod labels. |
 | `generic.podLabels` | `generic.podLabels.tier: "backend"` | `{}` | Labels applied to all workload pod templates. |
 | `generic.podAnnotations` | `generic.podAnnotations.rendered-from: "values"` | `{}` | Annotations applied to all workload pod templates. |
@@ -620,6 +621,7 @@ All [Common Workload Entry Fields](#common-workload-entry-fields) and all [jobsG
 | `pdbs.<name>.labels` / `annotations` | `labels.app: api` | `{}` | Extra metadata for PDB resource. |
 | `pdbs.<name>.gitops` | `gitops.argo.compareOptions: ["IgnoreExtraneous"]` | `{}` | Resource-level GitOps metadata overlay. |
 | `pdbs.<name>.minAvailable` / `maxUnavailable` | `minAvailable: 1` | `n/a` | Availability policy for disruptions. |
+| `pdbs.<name>.unhealthyPodEvictionPolicy` | `unhealthyPodEvictionPolicy: AlwaysAllow` | `n/a` | Optional PDB `spec.unhealthyPodEvictionPolicy` (`IfHealthyBudget` or `AlwaysAllow`). Requires `policy/v1`. Omitted when unset. |
 | `pdbs.<name>.extraSelectorLabels` | `extraSelectorLabels.component: api` | `{}` | Additional selector labels for PDB target pods. |
 | `hpas` | `hpas.api.scaleTargetRef.name: api` | `{}` | HPA resources keyed by suffix. |
 | `hpas.<name>.disabled` | `disabled: true` | `false` | Disables rendering of an HPA entry. |
